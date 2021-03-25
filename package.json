@@ -1,12 +1,13 @@
 {
-  "name": "StarBaem",
+  "name": "starbaem",
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "nuxt",
+    "dev": "nuxt --open",
     "build": "nuxt build",
     "start": "nuxt start",
-    "generate": "nuxt generate"
+    "generate": "nuxt generate",
+    "sh": "bash deploy.sh"
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.12.2",
