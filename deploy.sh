@@ -16,7 +16,7 @@ pull() {
   echo -e "$before ▶▶▶▶▶▶▶▶▶▶▶▶ 远程分支获取完成 $rear"
   prompt
 
-  read -p " ▶▶▶▶▶▶▶▶▶▶▶▶ 请输入你要拉取的分支: " temp_branch
+  read -p " ▶▶▶▶▶▶▶▶▶▶▶▶ 请输入你要拉取的分支: " dev
 
   # https://<USERNAME>.github.io/<REPO>  git@github.com:Aftersoil/Aftersoil-wiki.git
   git pull origin "$temp_branch"
@@ -28,7 +28,8 @@ pull() {
   prompt
   echo -e "$before ▶▶▶▶▶▶▶▶▶▶▶▶ 重现编译现有环境, 请稍后... $rear"
   prompt
-  npm install
+  # npm install
+  # npm install cnpm --registry=https://registry.npm.taobao.org
 
   prompt
   echo -e "$before▶▶▶▶▶▶▶▶▶▶▶▶ 环境下载成功，请重启服务😎😎😎 $rear"

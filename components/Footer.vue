@@ -1,6 +1,6 @@
 <!--  -->
 <template>
-  <section class="bd1">
+  <section class="content bd1">
     <h5 style="text-align:center;">联系我们</h5>
     <div class="row">
       <div class="col-4">213131</div>
@@ -29,5 +29,8 @@ export default {
 }
 .bd1{
   border: 1px solid red;
+}
+.content{
+
 }
 </style>
