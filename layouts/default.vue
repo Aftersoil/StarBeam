@@ -3,13 +3,13 @@
     <Header/>
     <Banner/>
     <Nuxt />
-    <Footer/>
+    <!-- <Footer/> -->
   </section>
 </template>
 
 <script scoped>
 import Header from "@/components/Header"
-import Footer from "@/components/Footer"
+// import Footer from "@/components/Footer"
 import Banner from "@/components/Banner"
 export default {
   name:'',
@@ -20,7 +20,7 @@ export default {
 
   components: {
     Header,
-    Footer,
+    // Footer,
     Banner
   },
 
