@@ -15,4 +15,5 @@ export default function ({ $axios, req }) {
     // console.log(config.data)
     // return config.data
   })
+
 }
