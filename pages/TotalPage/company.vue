@@ -120,12 +120,9 @@
        <!-- 服务范围 -->
         <h3>发展历程</h3>
 
-        <div class="time_line">
-          时间轴内容
-        </div>
-
 
       </div>
+      <Timeline/>
     </main>
     <Footer/>
   </section>
@@ -143,7 +140,7 @@ export default {
 
   components: {
     Map,
-    Footer
+    Footer,
   },
 
 }

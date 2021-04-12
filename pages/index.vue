@@ -10,9 +10,11 @@
           <sub>Company Business</sub>
         </h3>
         <div class="row fun_content1 mt-4 mb-4">
+
           <div class="col-2 bd1 cont_1">
             <p><span>拍摄剪辑</span></p>
           </div>
+
           <div class="col-2 bd1 cont_2">
             <p><span>纪录片</span></p>
             <!-- <img src="~/assets/img/j3.jpg" width="100%" alt=""> -->
@@ -39,30 +41,36 @@
           <div class="row mt-4">
             <div class="col-6">
               <div class="content_left">
-                <p>
-                  Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                  Omnis aliquid itaque nemo earum consectetur voluptatem dolores
-                   <b-button  variant="outline-dark">info</b-button>
-                </p>
+                <nuxtLink style="color:#000" :to="{name:'TotalPage-webDevelop'}">
+                  <p>
+                    专注网站建设、网站设计、
+                    空间设计、网络营销、网站托管、整合营销服务为核心服务。
+                    专注于创意设计实现商业价值较大化
+                    <b-button  variant="outline-dark">load more</b-button>
+                  </p>
+                </nuxtLink>
               </div>
             </div>
             <!-- 右侧区域 -->
             <div class="col-6 ">
               <div class="content_rig ">
                 <div class="content_rig_item rig_item1 mb-1">
+                 <nuxtLink style="color:#000" :to="{name:'TotalPage-shoot'}">
                   <p>
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-
-                    <b-button  variant="outline-dark">info</b-button>
-
+                    影视后期制作 广告策划、设计、发布、媒体开发及代理
+                    影视拍摄与制作、公关活动 拍摄花絮
+                    <b-button  variant="outline-dark">load more</b-button>
                   </p>
+                  </nuxtLink>
                 </div>
                 <div class="content_rig_item rig_item2">
-                  <p>
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-
-                    <b-button  variant="outline-dark">info</b-button>
-                  </p>
+                  <nuxtLink style="color:#000" :to="{name:'TotalPage-worksSase'}">
+                    <p>
+                    提供从影视广告拍摄制作、360全景视频制作、会议会务策划，
+                    全面提升客户品牌和产品的传播价值。
+                      <b-button  variant="outline-dark">load more</b-button>
+                    </p>
+                  </nuxtLink>
                 </div>
               </div>
             </div>
@@ -237,7 +245,7 @@ html {
   text-indent: 15px;
   background-color: rgba(255, 255, 255, 0.5);
   text-align: left;
-  padding: 15px 5px 0 5px;
+  padding: 10px 5px 0 5px;
   bottom: 0;
   position: absolute;
   margin: 0;

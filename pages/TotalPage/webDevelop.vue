@@ -14,7 +14,6 @@
     </h3>
 
 
-
     <div class="content ">
       <div class="container" v-for="item in msg" v-bind:key="item">
         <div class="col-12 col-sm-3 col-md-6 col1">

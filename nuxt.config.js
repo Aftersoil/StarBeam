@@ -13,7 +13,7 @@ export default {
       { rel: 'stylesheet', href: 'https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css' },
     ],
     script: [
-      { src: "https://webapi.amap.com/maps?v=1.4.15&key=b26f83d4dc38370d03c7b2628fd66342" }
+      { src: "https://webapi.amap.com/maps?v=1.4.15&key=b26f83d4dc38370d03c7b2628fd66342" },
     ]
   },
 

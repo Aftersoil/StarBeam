@@ -22,11 +22,20 @@
           <b-breadcrumb-item active>拍摄花絮</b-breadcrumb-item>
         </b-breadcrumb>
 
+        <template v-if="data.length < 1">
+          <div class="row no_data">
+            <div class="col-12" style="text-align: center;">
+              暂时没有数据
+            </div>
+          </div>
+          </template>
+
         <!--  卡片组件-->
         <b-card-group deck>
-          <div id="chatcontent">
+          <!-- 没有数据 -->
+          <div id="chatcontent" >
             <!-- 卡片图片 -->
-            <template v-for="(item, index) in data">
+            <template  v-for="(item, index) in data">
               <nuxt-link
                 :key="index"
                 :to="{
@@ -68,25 +77,7 @@ export default {
   name: "shoot",
   data() {
     return {
-      data: [
-        // {
-        //   id: "1",
-        //   cover: "https://i.loli.net/2021/04/09/sNJ2fwPDU3QI7vk.png",
-        //   desc:
-        //     "在《荒野求生》第三季节目中，贝尔·格里尔斯将来到地球上最艰苦、最荒凉的地方接受挑战。",
-        //   title: "荒野求生",
-        //   create: "2021-4-6 15:48",
-        // },
-        // {
-        //   id: "2",
-        //   cover: "https://i.loli.net/2021/04/09/obYijPscfea9Vuk.jpg",
-        //   desc:
-        //     "在《荒野求生》第三季节目中，贝尔·格里尔斯将来到地球上最艰苦、最荒凉的地方接受挑战。",
-        //   title: "荒野求生",
-        //   create: "2021-4-6 15:48",
-        // },
-
-      ],
+      data: [],
     };
   },
   components: {
@@ -108,6 +99,7 @@ export default {
         this.$axios.$get("/api/shoot").then(res=>{
         this.data = res.data
         console.log(this.data)
+
       })
      }
   }
@@ -167,9 +159,15 @@ main {
   position: relative;
   letter-spacing: 0.075em;
   background-color: white;
+  height: auto;
 }
 /* 顶部编写结束 */
-
+.no_data{
+  height: 250px;
+}
+.no_data .contnet{
+  height: 500px;
+}
 .bgc {
   margin-top: 20px;
   background: rgb(255, 255, 255);
@@ -222,6 +220,8 @@ img {
   background-color: rgb(243 243 243);
   width: 100%;
 } */
+
+
 .shoot-card-item {
   transition-duration: 0.5s;
 }
