@@ -123,17 +123,13 @@
         </div>
 
         <Footer />
-        <canvas
-          id="canvas"
-          style="position: absolute; top: 0px; left: 0px; z-index: 1"
-        ></canvas>
       </div>
     </div>
   </section>
 </template>
 
-<script>
 
+<script>
 import Footer from "@/components/Footer";
 export default {
   name: "",
@@ -141,22 +137,21 @@ export default {
     return {
       imgData: [
         {
-          url: require("~/assets/img/banner/banner10.png"),
+          link: require("~/assets/img/banner/banner10.png"),
           desc: "Banner 1",
         },
         {
-          url:  require("~/assets/img/banner/banner11.png"),
+          link: require("~/assets/img/banner/banner11.png"),
           desc: "Banner 2",
         },
         {
-          url:  require("~/assets/img/banner/banner12.png"),
+          link: require("~/assets/img/banner/banner12.png"),
           desc: "Banner 3",
         },
         {
-          url:  require("~/assets/img/banner/banner13.png"),
+          link: require("~/assets/img/banner/banner13.png"),
           desc: "Banner 3",
         },
-
       ],
     };
   },
@@ -164,16 +159,18 @@ export default {
     Footer,
   },
 
-  mounted(){
-    this.getSvgCaptchaCodeImg()
+  mounted() {
+    this.getSvgCaptchaCodeImg();
   },
-  methods:{
-     getSvgCaptchaCodeImg(){
-        this.$axios.$get("/api/shoot").then(res=>{
-        console.log(res.data[0])
-      })
-     }
-  }
+  methods: {
+    getSvgCaptchaCodeImg() {
+      this.$axios.$get("/api/shoot").then((res) => {
+        console.log(res.data[0]);
+      });
+    },
+
+
+  },
 };
 </script>
 
@@ -237,23 +234,23 @@ html {
 
 /* 文字演示 */
 .content_rig .rig_item1,
-.content_rig .rig_item2{
+.content_rig .rig_item2 {
   position: relative;
 }
 #content1 .content_left p,
-#content1  .content_rig_item  p{
+#content1 .content_rig_item p {
   text-indent: 15px;
   background-color: rgba(255, 255, 255, 0.5);
   text-align: left;
-  padding: 10px 5px 0 5px;
+  padding: 5px;
   bottom: 0;
   position: absolute;
   margin: 0;
   width: 100%;
 }
-#content1  p .btn{
+#content1 p .btn {
   float: right;
-  margin: 10px;
+  margin: 5px;
 }
 #content1 .content_rig {
   display: flex;

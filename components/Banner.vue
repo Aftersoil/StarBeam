@@ -14,7 +14,7 @@
       @sliding-end="onSlideEnd(slide)"
     >
       <template v-for="(item, index) in imgData">
-        <b-carousel-slide v-if="item.url" :key="index" :img-src="item.url">
+        <b-carousel-slide v-if="item.link" :key="index" :img-src="item.link">
           <h1 v-if="item.desc">{{ item.desc }}</h1>
         </b-carousel-slide>
       </template>

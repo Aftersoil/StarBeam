@@ -58,3 +58,14 @@ body {
   /* 需要设置高度以使时差生效 */
   height: 100vh;
 }
+
+/* 路由切换过渡动画 */
+
+.page-enter-active, .page-leave-active {
+  font-size:12px;
+  transition: opacity 0.2s;
+}
+
+.page-enter, .page-leave-active {
+  opacity: 0;
+}

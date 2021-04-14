@@ -2,8 +2,9 @@
 <template>
   <section>
     <header>
-      <h1>为您提供专业设计解决方案
-        <br/>
+      <h1>
+        为您提供专业设计解决方案
+        <br />
         <sub>Provide you with professional design solutions</sub>
       </h1>
     </header>
@@ -26,9 +27,7 @@
               <div class="col-md-4 bgs_item bd1">
                 <!-- <img src="~/assets/img/j2.png" alt=""> -->
               </div>
-              <div class="col-md-4 bgs_item bd1">
-                 lorem
-              </div>
+              <div class="col-md-4 bgs_item bd1">lorem</div>
             </div>
           </div>
         </div>
@@ -37,8 +36,7 @@
         <h3>服务范围</h3>
         <!-- 第一列 -->
         <div class="row">
-
-          <div class="col-6 ">
+          <div class="col-6">
             <div class="row card_style">
               <div class="col-3">
                 <!-- 图标 -->
@@ -58,8 +56,8 @@
           </div>
 
           <div class="col-6">
-             <div class="row card_style">
-              <div class="col-3 ">
+            <div class="row card_style">
+              <div class="col-3">
                 <!-- 图标 -->
                 <i class="iconfont icon-wangzhan"></i>
               </div>
@@ -67,10 +65,10 @@
               <div class="col-9 service_text">
                 <strong>网站开发</strong>
                 <p>
-                专注网站建设、网站设计、品牌设计、空间设计、
-                网络营销、网站托管、整合营销服务为核心服务。
-                专注于创意设计实现商业价值较大化，
-                为所有谋求长远发展的企业提升品牌品质。
+                  专注网站建设、网站设计、品牌设计、空间设计、
+                  网络营销、网站托管、整合营销服务为核心服务。
+                  专注于创意设计实现商业价值较大化，
+                  为所有谋求长远发展的企业提升品牌品质。
                 </p>
               </div>
             </div>
@@ -80,26 +78,26 @@
         <!-- 第二列 -->
         <div class="row mt-2">
           <div class="col-6">
-             <div class="row card_style">
+            <div class="row card_style">
               <div class="col-3">
                 <!-- 图标 -->
                 <i class="iconfont icon-xuanchuanshipin"></i>
               </div>
               <!-- 描述 -->
-              <div class="col-9  service_text">
+              <div class="col-9 service_text">
                 <strong>宣传片</strong>
                 <p>
-                 为客户量身定制影视广告、360全景视频和会议会务策划
-                 （包括：企业宣传片、TVC广告片、品牌微电影、培训教学片、
-                 活动策划等）
+                  为客户量身定制影视广告、360全景视频和会议会务策划
+                  （包括：企业宣传片、TVC广告片、品牌微电影、培训教学片、
+                  活动策划等）
                 </p>
               </div>
             </div>
           </div>
 
           <div class="col-6">
-             <div class="row card_style">
-              <div class="col-3 ">
+            <div class="row card_style">
+              <div class="col-3">
                 <!-- 图标 -->
                 <i class="iconfont icon-guanggao"></i>
               </div>
@@ -109,42 +107,59 @@
                 <p>
                   为客户提供包括企业文化表现、品牌管理咨询、
                   平面设计制作、会展活动策划、
-                  等不同的解决方案和专业的咨询服务，
-                  帮助客户进行企业战略建设
+                  等不同的解决方案和专业的咨询服务， 帮助客户进行企业战略建设
                 </p>
               </div>
             </div>
           </div>
         </div>
 
-       <!-- 服务范围 -->
-        <h3>发展历程</h3>
+        <!-- 服务范围 -->
+        <h3 class="mb-5">发展历程</h3>
 
-
+        <div class="time_line">
+          <time-line :timeline-list="dongtai"></time-line>
+        </div>
       </div>
-      <Timeline/>
     </main>
-    <Footer/>
+    <Footer />
   </section>
 </template>
 
 <script scoped>
-import Map from '@/components/Map'
-import Footer from '@/components/Footer'
+import Map from "@/components/Map";
+import Footer from "@/components/Footer";
+import TimeLine from "@/components/TimeLine";
 export default {
-  name:'contact',
-  data () {
+  name: "contact",
+  data() {
     return {
+      dongtai: [
+        {
+          date: "2012-12-21",
+          title: "时间线1",
+          content: "时间线1内容",
+        },
+        {
+          date: "2012-12-21",
+          title: "时间线2",
+          content: "时间线2内容",
+        },
+        {
+          date: "2012-12-21",
+          title: "时间线3",
+          content: "时间线3内容",
+        },
+      ],
     };
   },
 
   components: {
     Map,
     Footer,
+    TimeLine,
   },
-
-}
-
+};
 </script>
 <style scoped>
 /* 顶部编写样式 */
@@ -170,12 +185,10 @@ header h1 {
   position: absolute;
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
-
 }
-header h1 sub{
+header h1 sub {
   font-size: 1rem;
 }
-
 
 header::before {
   position: absolute;
@@ -197,7 +210,7 @@ main {
   letter-spacing: 0.075em;
   background-color: white;
 }
-.container h3{
+.container h3 {
   font-family: STKaiti;
   padding: 8px 0;
   line-height: 50px;
@@ -207,32 +220,31 @@ main {
   padding-bottom: 7px;
   text-align: center;
 }
-.container .content_text{
+.container .content_text {
   text-indent: 15px;
   text-align: center;
 }
-.bd1{
+.bd1 {
   border: 1px solid #000;
 }
-.container .bgs_item{
-  background-image: url('~/assets/img/j2.png');
+.container .bgs_item {
+  background-image: url("~/assets/img/j2.png");
   background-size: cover;
   height: 150px;
   border: 5px solid #fff;
 }
 
-
-.service_text{
-  display:inline-block;
+.service_text {
+  display: inline-block;
   line-height: 30px;
   text-align: center;
 }
-.service_text p{
+.service_text p {
   text-indent: 15px;
   text-align: left;
 }
 /* 卡片外部样式 */
-.card_style{
+.card_style {
   border: 1px solid #ccc;
 }
 /* .time_line{

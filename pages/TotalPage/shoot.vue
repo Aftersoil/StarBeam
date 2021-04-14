@@ -22,45 +22,43 @@
           <b-breadcrumb-item active>拍摄花絮</b-breadcrumb-item>
         </b-breadcrumb>
 
-        <template v-if="data.length < 1">
-          <div class="row no_data">
-            <div class="col-12" style="text-align: center;">
-              暂时没有数据
-            </div>
-          </div>
-          </template>
-
         <!--  卡片组件-->
         <b-card-group deck>
-          <!-- 没有数据 -->
-          <div id="chatcontent" >
+          <div id="chatcontent">
+            <template v-if="data.length < 1">
+              <div class="dropdown-divider">暂时还没有数据哦</div>
+            </template>
             <!-- 卡片图片 -->
-            <template  v-for="(item, index) in data">
-              <nuxt-link
-                :key="index"
-                :to="{
-                  path: '/detailPage/shootDetail',
-                  query: { id: item.id },
-                }"
-              >
-                <b-card
-                  :img-src="item.small_img"
-                  :img-alt="item.title"
-                  img-left
-                  class="mb-3 shoot-card-item"
-                  :style="{ padding: '10px' }"
+            <template v-for="(item, index) in data">
+              <template>
+                <nuxt-link
+                  :key="index"
+                  :to="{
+                    path: '/detailPage/shootDetail',
+                    query: { id: item.id },
+                  }"
                 >
-                  <b-card-text class="text">
-                    <h6>
-                      {{ item.title }}<b-badge variant="danger">New</b-badge>
-                    </h6>
-                    <div class="desc">{{ item.desc }}</div>
-                  </b-card-text>
-                  <div class="right">
-                    <span class="right-1">{{ item.createTime | formatDate }}</span>
-                  </div>
-                </b-card>
-              </nuxt-link>
+                  <b-card
+                    :img-src="item.small_img"
+                    :img-alt="item.title"
+                    img-left
+                    class="mb-3 shoot-card-item"
+                    :style="{ padding: '10px' }"
+                  >
+                    <b-card-text class="text">
+                      <h6>
+                        {{ item.title }}<b-badge variant="danger">New</b-badge>
+                      </h6>
+                      <div class="desc">{{ item.desc }}</div>
+                    </b-card-text>
+                    <div class="right">
+                      <span class="right-1">{{
+                        item.createTime | formatDate
+                      }}</span>
+                    </div>
+                  </b-card>
+                </nuxt-link>
+              </template>
             </template>
           </div>
         </b-card-group>
@@ -71,39 +69,38 @@
 </template>
 
 <script scoped>
-import { formatDate } from '@/assets/js/util';
+import { formatDate } from "@/assets/js/util";
 import Footer from "@/components/Footer";
 export default {
   name: "shoot",
   data() {
     return {
-      data: [],
+      data: [
+      ],
     };
   },
   components: {
     Footer,
   },
   filters: {
-    formatDate(time){
-      time = Number.parseInt(time)
-      console.log(time)
-      let data = new  Date(time)
-      return formatDate(data, 'yyyy-MM-dd hh:mm:ss')
-    }
+    formatDate(time) {
+      time = Number.parseInt(time);
+      console.log(time);
+      let data = new Date(time);
+      return formatDate(data, "yyyy-MM-dd hh:mm:ss");
+    },
   },
   mounted() {
-    this.getData()
+    this.getData();
   },
-  methods:{
-      getData(){
-        this.$axios.$get("/api/shoot").then(res=>{
-        this.data = res.data
-        console.log(this.data)
-
-      })
-     }
-  }
-
+  methods: {
+    getData() {
+      this.$axios.$get("/api/shoot").then((res) => {
+        this.data = res.data;
+        console.log(this.data.length);
+      });
+    },
+  },
 };
 </script>
 <style scoped>
@@ -159,15 +156,9 @@ main {
   position: relative;
   letter-spacing: 0.075em;
   background-color: white;
-  height: auto;
 }
 /* 顶部编写结束 */
-.no_data{
-  height: 250px;
-}
-.no_data .contnet{
-  height: 500px;
-}
+
 .bgc {
   margin-top: 20px;
   background: rgb(255, 255, 255);
@@ -176,7 +167,7 @@ main {
   margin-top: 10px;
   background-image: linear-gradient(120deg, #fdfbfb 80%, #eaf4f8 0%);
 }
-.card-img-left{
+.card-img-left {
   width: 250px;
 }
 a {
@@ -220,8 +211,6 @@ img {
   background-color: rgb(243 243 243);
   width: 100%;
 } */
-
-
 .shoot-card-item {
   transition-duration: 0.5s;
 }

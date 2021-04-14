@@ -28,7 +28,9 @@
                 </p>
               </div>
               <div class="card_video">
-
+                <video width="100%" controls src="~/assets/video/v1.mp4" >
+                  您的版本太低
+                </video>
               </div>
             </div>
           <!-- 视频卡片 End -->
@@ -125,7 +127,7 @@ main {
 /* 顶部结束 */
 
 .bd1{
-  border: 1px solid #000;
+  border-bottom: 1px solid rgb(129, 129, 129);
 }
 
 /* 内容开始 */
@@ -146,7 +148,7 @@ main {
 .card_title h4{
   text-align: center;
   line-height: 50px;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid rgb(129, 129, 129);
 }
 .card_title .sub_title{
   font-size: 13px;
@@ -156,8 +158,6 @@ main {
 }
 
 .big_card .card_video{
-  height: 500px;
-  border: 1px solid #000;
 }
 
 

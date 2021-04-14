@@ -2,117 +2,145 @@
 <template>
   <section>
     <header>
-      <h1>Web 网站开发
-        <br/>
+      <h1>
+        Web 网站开发
+        <br />
         <sub>Provide you with professional design solutions</sub>
       </h1>
     </header>
     <main>
       <div class="container">
-
-
-          <h3>Web 网站开发</h3>
-          <div class="row" >
-          <template class="" v-for="(item,index) in dataList">
+        <div v-if="routId == 1" class="row">
+          <template class="" v-for="(item, index) in dataList">
             <div class="col-4" :key="index">
-              <!-- 网站图片 -->
-              <img src="~/assets/img/develop/pc/pc1.png" width="100%" alt="">
-              <!-- 网站简介 -->
-                <p class="title">
-                  <span>
-                    {{item.title}}
-                  </span>
-                </p>
-                <p class="sub_title" style="color: rgb(153, 153, 153); font-size: 14px;">
-                  <span>
-                    {{item.subTitle}}
-                  </span>
-                </p>
-              <!-- 网站简介END -->
-            </div>
-            </template>
-          </div>
 
+              <img :src="item.itemImg" width="100%" alt="" />
 
-
-      <template class="contaienr">
-        <h3>移动端开发</h3>
-         <b-card class="card_img" img-src="~/assets/img/develop/mobile/mb1.png" img-alt="Card image" img-left>
-          <b-card-text>
-            <h4 class="card_title" color="#999999">
-              企业品牌类
-              <br>
-              <sub>Enterprise brand</sub>
-            </h4>
-            <div class="card_desc">
-              <p>
+              <p class="title">
                 <span>
-                  随着4G网络普及，各大小品牌都纷纷进驻移动互联网，
-                  而国内超过90%的推广公司都会通过移动端开发方式进行推广。
-                  手机网站就是能被随身携带和访问的微网站，能直接转发到微博和微信朋友圈，能直接在手机上观看并购买您的产品。
+                  {{ item.itemTitle }}
                 </span>
               </p>
-              <p>
+              <p
+                class="sub_title"
+                style="color: rgb(153, 153, 153); font-size: 14px"
+              >
                 <span>
-                  展示企业形象、企业文化、企业产品的最好窗口，今年又以新季度的企划案？放在传统网站上做SEO提升点击量？太繁琐了。移动端网站能直接在微博、微信朋友圈推广，用户能方便快捷访问您最新形象展示。
-                  用户群针对性强，绝对是时尚买家和商业精英群体、企业级等。
+                  {{ item.itemSubTitle }}
                 </span>
               </p>
+
             </div>
+          </template>
+        </div>
 
-          </b-card-text>
-        </b-card>
-      </template>
+        <template v-else-if="routId == 2"  class="contaienr" v-for="(item, index) in dataList">
+
+         <b-card no-body :key="index" class="overflow-hidden mt-3" style="max-width: 100%;">
+            <b-row no-gutters>
+              <b-col md="3" >
+                <b-card-img :src="item.itemImg" alt="Image" class="rounded-0 "></b-card-img>
+              </b-col>
+              <b-col md="9">
+                <b-card-body>
+                  <b-card-text>
+                    <h4 class="card_title" color="#999999">
+                      {{item.itemTitle}}
+                      <br />
+                      <sub>{{item.itemSubTitle}}</sub>
+                    </h4>
+                    <div class="card_desc">
+                        <p>
+                          <span>
+                          </span>
+                        </p>
+                        <p>
+                          <span>
+                          {{item.itemDesc}}
+                          </span>
+                        </p>
+                      </div>
+                  </b-card-text>
+                </b-card-body>
+              </b-col>
+            </b-row>
+          </b-card>
+        </template>
 
 
+         <template v-else-if="routId == 3"  class="contaienr" v-for="(item, index) in dataList">
 
+         <b-card no-body :key="index" class="overflow-hidden mt-3" style="max-width: 100%;">
+            <b-row no-gutters>
+              <b-col md="3" >
+                <b-card-img :src="item.itemImg" alt="Image" class="rounded-0 "></b-card-img>
+              </b-col>
+              <b-col md="9">
+                <b-card-body>
+                  <b-card-text>
+                    <h4 class="card_title" color="#999999">
+                      {{item.itemTitle}}
+                      <br />
+                      <sub>{{item.itemSubTitle}}</sub>
+                    </h4>
+                    <div class="card_desc">
+                        <p>
+                          <span>
+                          </span>
+                        </p>
+                        <p>
+                          <span>
+                          {{item.itemDesc}}
+                          </span>
+                        </p>
+                      </div>
+                  </b-card-text>
+                </b-card-body>
+              </b-col>
+            </b-row>
+          </b-card>
+        </template>
       </div>
-
-
-
-
     </main>
-    <Footer/>
+    <Footer />
   </section>
 </template>
 
 <script scoped>
-import Footer from '@/components/Footer'
+import Footer from "@/components/Footer";
 export default {
-  name:'webDetail',
-  data () {
+  name: "webDetail",
+  data() {
     return {
-      id:1,
-      dataList:[],
-      title:""
+      dataList: [],
+      title: "",
+      test:false,
+      pid : 2,
+      routId:this.$route.query.id,
+      isShow:true
     };
   },
 
   components: {
-    Footer
+    Footer,
   },
 
-  mounted(){
-    this.getData()
+  mounted() {
+    this.getData();
   },
   methods: {
-    getData(){
-      this.$axios.$get(`/api/category/project/1`)
-      .then(res=>{
-        this.dataList = res.data
-        console.log(this.dataList[0])
-      })
+    async getData() {
+      const id = this.$route.query.id;
+      await this.$axios.$get(`/api/category/project/${id}`).then((res) => {
+        this.dataList = res.data[0].project;
+        console.log(this.dataList)
 
+      });
 
-
-    }
-
-
+      console.log(this.routId)
+    },
   },
-
-
-}
-
+};
 </script>
 <style scoped>
 /* 顶部编写样式 */
@@ -138,12 +166,10 @@ header h1 {
   position: absolute;
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
-
 }
-header h1 sub{
+header h1 sub {
   font-size: 1rem;
 }
-
 
 header::before {
   position: absolute;
@@ -164,43 +190,39 @@ main {
   position: relative;
   letter-spacing: 0.075em;
   background-color: white;
-
 }
 /* 顶部结束 */
 
-.bd1{
+.bd1 {
   border: 1px solid #000;
 }
 
-
-
 /* 网站布局 */
-.title,.sub_title{
+.title,
+.sub_title {
   text-align: center;
 }
 
 /* 小程序移动端 */
 
-
-.card_img{
-  height: 450px;
-
+.card-img {
+  margin-top: 10px;
+  margin-left:50px;
+  width: 150px !important;
 }
-
-.card_title sub{
+.card_img img{
+  width: 20%;
+}
+.card_title sub {
   color: #999;
   font-size: 13px;
 }
-.card_desc{
+.card_desc {
   width: 100%;
   font-size: 16px;
-  padding-top: 50px;
+  padding-top: 10px;
 }
-.card_desc p{
-  line-height: 35px;
+.card_desc p {
+  line-height: 25px;
 }
-
-
-
-
 </style>

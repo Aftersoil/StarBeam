@@ -10,44 +10,47 @@
     </header>
     <main>
       <div class="container">
-        <div class="shoot-detail-header border-bottom">
-          <h2 class="title">{{ title }}</h2>
-          <span class="desc">首页 > 拍摄花絮 > 荒野求生</span>
-        </div>
-        <div class="shoot-detail-wrapp">
-          <Banner
-            :imgData="imgData"
-            :slide.sync="currentIndex"
-            @sliding-start="prevClick(slide)"
-            @sliding-end="nextClick(slide)"
-          />
-          <div id="smallpicarea">
-            <div id="thumbs">
-              <ul>
-                <li
-                  class="first btnPrev fa fa-chevron-left"
-                  @click="prevClick()"
-                ></li>
-                <li v-for="(item, index) in imgData" :key="index">
-                  <a @click="clickThumbs(index)">
-                    <img
-                      :src="item.url"
-                      :class="currentIndex == index ? 'current' : ''"
-                      :ref="`thumb_${index}`"
-                    />
-                  </a>
-                </li>
-                <li
-                  class="last btnNext fa fa-chevron-right"
-                  @click="nextClick()"
-                ></li>
-              </ul>
+        <template v-if="!title">
+          <div>暂时还没有数据</div>
+        </template>
+        <template v-else>
+          <div class="shoot-detail-header border-bottom">
+            <h2 class="title">{{ title }}</h2>
+            <span class="desc">{{ desc }}</span>
+          </div>
+          <div class="shoot-detail-wrapp">
+            <Banner
+              :imgData="imgData"
+              :slide.sync="currentIndex"
+              @sliding-start="prevClick(slide)"
+              @sliding-end="nextClick(slide)"
+            />
+            <div id="smallpicarea">
+              <div id="thumbs">
+                <ul>
+                  <li
+                    class="first btnPrev fa fa-chevron-left"
+                    @click="prevClick()"
+                  ></li>
+                  <li v-for="(item, index) in imgData" :key="index">
+                    <a @click="clickThumbs(index)">
+                      <img
+                        :src="item.link"
+                        :class="currentIndex == index ? 'current' : ''"
+                        :ref="`thumb_${index}`"
+                      />
+                    </a>
+                  </li>
+                  <li
+                    class="last btnNext fa fa-chevron-right"
+                    @click="nextClick()"
+                  ></li>
+                </ul>
+              </div>
             </div>
           </div>
-          <span class="shoot-detail-desc">
-            {{ desc }}
-          </span>
-        </div>
+        </template>
+
            
       </div>
     </main>
@@ -65,35 +68,22 @@ export default {
   data() {
     return {
       // 图片数据
-      title: "荒野求生",
-      desc: "这是一些描述",
+      title: "",
+      desc: "",
       imgData: [
         {
           url: "https://picsum.photos/1024/480/?image=10",
           desc: "这是描述",
-        },
-        {
-          url: "https://picsum.photos/1024/480/?image=11",
-          desc: "这是描述1",
-        },
-        {
-          url: "https://picsum.photos/1024/480/?image=12",
-          desc: "这是描述2",
-        },
-        {
-          url: "https://picsum.photos/1024/480/?image=12",
-          desc: "这是描述2",
-        },
-        {
-          url: "https://picsum.photos/1024/480/?image=12",
-          desc: "这是描述2",
         },
       ],
       currentIndex: 0,
       timer: null,
     };
   },
-
+  mounted() {
+    this.getData();
+    console.log();
+  },
   methods: {
     clickThumbs(index) {
       this.currentIndex = index;
@@ -108,6 +98,17 @@ export default {
       this.currentIndex = this.currentIndex + 1;
       if (this.currentIndex > this.imgData.length - 1) {
         this.currentIndex = 0;
+      }
+    },
+    async getData() {
+      const id = this.$route.query.id;
+      let { data } = await this.$axios.get(`/api/shootBanner/${id}`);
+
+      if (data.data[0]) {
+        data = data.data[0];
+        this.title = data.title;
+        this.desc = data.desc;
+        this.imgData = data.banner;
       }
     },
   },

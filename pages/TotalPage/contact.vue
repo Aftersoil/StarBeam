@@ -28,6 +28,7 @@
   </section>
 </template>
 
+
 <script scoped>
 import Map from '@/components/Map'
 import Footer from '@/components/Footer'

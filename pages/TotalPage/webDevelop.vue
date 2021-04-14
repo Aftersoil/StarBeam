@@ -12,19 +12,16 @@
      <span>网站开发</span>
      <p><sub>Web development</sub></p>
     </h3>
-
-
-    <div class="content ">
-      <div class="container" v-for="item in msg" v-bind:key="item">
+    <div class="content bg_card ">
+      <div class="container" v-for="item in data" v-bind:key="item">
         <div class="col-12 col-sm-3 col-md-6 col1">
           <div class="cotn">
             <div class="c_l">
-              <div>{{ item.L_title }}</div>
-              <div>{{ item.L_l_1 }}</div>
-              <div>{{ item.L_l_2 }}</div>
-              <div>{{ item.L_l_3 }}</div>
-              <div>{{ item.L_l_4 }}</div>
-              <div>{{ item.L_l_5 }}</div>
+              <div>{{item.title}}</div>
+               <ul style="list-style:none; display:inline" v-for="descItem in formatDate(item.desc)" :key="descItem">
+                 <li>{{descItem}}</li>
+               </ul>
+
             </div>
             <div class="c_r">
               <div>》</div>
@@ -32,12 +29,15 @@
           </div>
         </div>
         <div class="col-12 col-sm-9 col-md-6 col2">
-          <nuxtLink :to="{name:'detailPage-webDetail'}">
+          <nuxtLink :key="item" :to="{
+            path:'/detailPage/webDetail',
+            query:{id:item.id}
+            }">
 
             <div class="con">
               <div
                 class="img_con"
-                v-bind:style="{ backgroundImage: 'url(' + item.R_back + ')' }"
+                v-bind:style="{ backgroundImage: 'url(' + item.small_img + ')' }"
               ></div>
               <div class="hr">
                 <hr />
@@ -46,9 +46,9 @@
                 <hr />
                 <div class="text_con">
                   <h3>
-                    <span>{{ item.R_span }}</span
+                    <span>{{ item.title }}</span
                     ><br />
-                    {{ item.R_text }}
+                    {{ item.subTitle }}
                   </h3>
                 </div>
 
@@ -70,6 +70,7 @@ export default {
   name: "webDevelop",
   data() {
     return {
+      data:[],
       msg: [
         {
           L_title: "网站开发",
@@ -105,12 +106,37 @@ export default {
 
       ],
 
+
     };
   },
 
   components: {
     Footer
   },
+
+  mounted(){
+    this.getData()
+    // this.formatDate()
+  },
+  methods:{
+      getData(){
+        this.$axios.$get(`/api/category`).then((res)=>{
+          this.data = res.data;
+          console.log(this.data)
+
+          // this.data.desc = this.formatDate(this.data.desc)
+          console.log(this.data);
+        })
+     },
+
+    formatDate(data) {
+      // var strlist="1.品牌网站 , 2.企业 + 外贸企业 官网, 3.集团 + 上市公司 官网, 4.产品 + 营销型 网站",
+      const strlist = data.split(",")
+      return strlist
+    },
+
+
+  }
 };
 </script>
 <style scoped>
@@ -142,8 +168,6 @@ header h1 {
 header h1 sub{
   font-size: 1rem;
 }
-
-
 
 header::before {
   position: absolute;
@@ -201,8 +225,21 @@ section .web_title{
 .col1 {
   height: 100%;
   padding: 0;
-  background-color: rgba(0, 0, 0, 0.05);
+  background-color: rgba(255, 255, 255,.5);
   padding-top: 60px;
+  width: 40%;
+}
+
+
+.col1,.con{
+box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+}
+.con{
+  border-right: 0;
+}
+.col1,.con:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
 .cotn {
   padding: 0;
@@ -216,7 +253,7 @@ section .web_title{
 }
 .c_l {
   width: 75%;
-  padding: 45px;
+  padding: 15px 0 0 60px;
 }
 .c_l > div:nth-child(1) {
   font-size: 1.4em;
