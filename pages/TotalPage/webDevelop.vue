@@ -31,7 +31,9 @@
         <div class="col-12 col-sm-9 col-md-6 col2">
           <nuxtLink :key="item" :to="{
             path:'/detailPage/webDetail',
-            query:{id:item.id}
+            query:{
+              id:item.id,
+            }
             }">
 
             <div class="con">
@@ -71,41 +73,6 @@ export default {
   data() {
     return {
       data:[],
-      msg: [
-        {
-          L_title: "网站开发",
-          L_l_1: "1.品牌网站",
-          L_l_2: "2.企业 + 外贸企业 官网",
-          L_l_3: "3.集团 + 上市公司 官网",
-          L_l_4: "4.产品 + 营销型 网站",
-          L_l_5: "",
-          R_span: "[ WEBSITEDESIGN ]",
-          R_text: "网站设计",
-          R_back: "https://www.tqchina.cn/upload/2017/0523/wangzhansheji.jpg",
-        },
-        {
-          L_title: "小程序/H5开发",
-          L_l_1: "1. 企业 / 品牌展示 / 活动 / 邀请函 H5开发",
-          L_l_2: "2. 企业小程序、公众号 ",
-          L_l_5: "",
-          R_span: "[ WECHAT / H5 ]",
-          R_text: "微信/H5开发",
-          R_back: require("~/assets/img/develop/xcx.jpg"),
-        },
-        {
-          L_title: "Android/iOS开发",
-          L_l_1: "1.电商应用 功能应用",
-          L_l_2: "2.线上直播",
-          L_l_3: "3.集团 + 上市公司 官网",
-          L_l_4: "4.产品 + 营销型 网站",
-          L_l_5: "",
-          R_span: "[ IMAGE STRATEGY ]",
-          R_text: "移动端开发",
-          R_back: require("~/assets/img/develop/android.jpg"),
-        },
-
-      ],
-
 
     };
   },
