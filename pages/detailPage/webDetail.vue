@@ -13,7 +13,6 @@
         <div v-if="routId == 1" class="row">
           <template class="" v-for="(item, index) in dataList">
             <div class="col-4" :key="index">
-
               <img :src="item.itemImg" width="100%" alt="" />
 
               <p class="title">
@@ -29,37 +28,47 @@
                   {{ item.itemSubTitle }}
                 </span>
               </p>
-
             </div>
           </template>
         </div>
 
-        <template v-else-if="routId == 2"  class="contaienr" v-for="(item, index) in dataList">
-
-         <b-card no-body :key="index" class="overflow-hidden mt-3" style="max-width: 100%;">
+        <template
+          v-else-if="routId == 2"
+          class="contaienr"
+          v-for="(item, index) in dataList"
+        >
+          <b-card
+            no-body
+            :key="index"
+            class="overflow-hidden mt-3"
+            style="max-width: 100%"
+          >
             <b-row no-gutters>
-              <b-col md="3" >
-                <b-card-img :src="item.itemImg" alt="Image" class="rounded-0 "></b-card-img>
+              <b-col md="3">
+                <b-card-img
+                  :src="item.itemImg"
+                  alt="Image"
+                  class="rounded-0"
+                ></b-card-img>
               </b-col>
               <b-col md="9">
                 <b-card-body>
                   <b-card-text>
                     <h4 class="card_title" color="#999999">
-                      {{item.itemTitle}}
+                      {{ item.itemTitle }}
                       <br />
-                      <sub>{{item.itemSubTitle}}</sub>
+                      <sub>{{ item.itemSubTitle }}</sub>
                     </h4>
                     <div class="card_desc">
-                        <p>
-                          <span>
-                          </span>
-                        </p>
-                        <p>
-                          <span>
-                          {{item.itemDesc}}
-                          </span>
-                        </p>
-                      </div>
+                      <p>
+                        <span> </span>
+                      </p>
+                      <p>
+                        <span>
+                          {{ item.itemDesc }}
+                        </span>
+                      </p>
+                    </div>
                   </b-card-text>
                 </b-card-body>
               </b-col>
@@ -67,33 +76,43 @@
           </b-card>
         </template>
 
-
-         <template v-else-if="routId == 3"  class="contaienr" v-for="(item, index) in dataList">
-
-         <b-card no-body :key="index" class="overflow-hidden mt-3" style="max-width: 100%;">
+        <template
+          v-else-if="routId == 3"
+          class="contaienr"
+          v-for="(item, index) in dataList"
+        >
+          <b-card
+            no-body
+            :key="index"
+            class="overflow-hidden mt-3"
+            style="max-width: 100%"
+          >
             <b-row no-gutters>
-              <b-col md="3" >
-                <b-card-img :src="item.itemImg" alt="Image" class="rounded-0 "></b-card-img>
+              <b-col md="3">
+                <b-card-img
+                  :src="item.itemImg"
+                  alt="Image"
+                  class="rounded-0"
+                ></b-card-img>
               </b-col>
               <b-col md="9">
                 <b-card-body>
                   <b-card-text>
                     <h4 class="card_title" color="#999999">
-                      {{item.itemTitle}}
+                      {{ item.itemTitle }}
                       <br />
-                      <sub>{{item.itemSubTitle}}</sub>
+                      <sub>{{ item.itemSubTitle }}</sub>
                     </h4>
                     <div class="card_desc">
-                        <p>
-                          <span>
-                          </span>
-                        </p>
-                        <p>
-                          <span>
-                          {{item.itemDesc}}
-                          </span>
-                        </p>
-                      </div>
+                      <p>
+                        <span> </span>
+                      </p>
+                      <p>
+                        <span>
+                          {{ item.itemDesc }}
+                        </span>
+                      </p>
+                    </div>
                   </b-card-text>
                 </b-card-body>
               </b-col>
@@ -113,11 +132,10 @@ export default {
   data() {
     return {
       dataList: [],
-      title: "",
-      test:false,
-      pid : 2,
-      routId:this.$route.query.id,
-      isShow:true
+      test: false,
+      pid: 2,
+      routId: this.$route.query.id,
+      isShow: true,
     };
   },
 
@@ -126,18 +144,14 @@ export default {
   },
 
   mounted() {
-    this.getData();
+    this.getCardList();
   },
   methods: {
-    async getData() {
+    async getCardList() {
       const id = this.$route.query.id;
-      await this.$axios.$get(`/api/category/project/${id}`).then((res) => {
-        this.dataList = res.data[0].project;
-        console.log(this.dataList)
-
-      });
-
-      console.log(this.routId)
+      const { ...data } = await this.$axios.$get(`/api/category/project/${id}`);
+      console.log(data.data);
+      this.dataList = data.data[0].project
     },
   },
 };
@@ -207,10 +221,10 @@ main {
 
 .card-img {
   margin-top: 10px;
-  margin-left:50px;
+  margin-left: 50px;
   width: 150px !important;
 }
-.card_img img{
+.card_img img {
   width: 20%;
 }
 .card_title sub {
