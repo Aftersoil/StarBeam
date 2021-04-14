@@ -85,7 +85,6 @@ export default {
   filters: {
     formatDate(time) {
       time = Number.parseInt(time);
-      console.log(time);
       let data = new Date(time);
       return formatDate(data, "yyyy-MM-dd hh:mm:ss");
     },

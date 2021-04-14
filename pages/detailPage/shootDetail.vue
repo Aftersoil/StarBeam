@@ -59,7 +59,6 @@
 </template>
 
 <script scoped>
-import Map from "@/components/Map";
 import Footer from "@/components/Footer";
 import Banner from "@/components/Banner";
 
@@ -114,7 +113,6 @@ export default {
   },
 
   components: {
-    Map,
     Banner,
     Footer,
   },

@@ -51,12 +51,12 @@ export default {
   axios: {
     proxy: true,
     // baseURL: process.env.NODE_ENV === 'development' ? 'http://127.0.0.1:7001/' : 'http://cboy.eyuanxing.cn:7001/'
-    baseURL: 'http://localhost:7001/'
+    baseURL: 'http://localhost:7001'
   },
   proxy: {
-    '/api/': 'http://127.0.0.1:7001/',
+    '/api/': 'http://127.0.0.1:7001',
     '/public/': {
-      target: 'http://127.0.0.1:7001/',
+      target: 'http://127.0.0.1:7001',
     },
   },
 

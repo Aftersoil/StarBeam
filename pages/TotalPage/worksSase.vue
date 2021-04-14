@@ -2,150 +2,119 @@
 <template>
   <section>
     <header>
-      <h1>视觉传播塑造企业形象
-        <br/>
+      <h1>
+        视觉传播塑造企业形象
+        <br />
         <sub>&nbsp;&nbsp;Visual communication shapes corporate image</sub>
       </h1>
     </header>
 
     <main>
-
-    <div id="modules">
-      <b-breadcrumb :items="items"  class="brean_crumb"></b-breadcrumb>
-
-
-      <!-- b-container (内容上部分)-----1 -->
-      <div id="container1">
-        <h2 class="titles">{{ obj.titles.title1 }}</h2>
-
-        <div class="row">
-          <div class="col-4 box_video bd1">
-            <!-- <img src="~/assets/img/video2.jpg" width="100%"> -->
+      <div id="modules">
+        <b-breadcrumb :items="items" class="brean_crumb"></b-breadcrumb>
+        <!-- b-container (内容上部分)-----1 -->
+        <template v-for="(item, index) in dataList">
+          <div id="container1" :key="index">
+            <h2 class="titles">{{ item.title }}</h2>
+            <div class="row">
+              <template v-for="(items, index) in item.opus">
+                <div class="col-4 box_video bd1" :key="index">
+                  <!-- <img src="~/assets/img/video2.jpg" width="100%"> -->
+                  <!-- 视频跳转区域 -->
+                  <nuxt-link
+                    :to="{
+                      name: 'worksDetails-worksDetail',
+                      query: { id: items.id },
+                    }"
+                  >
+                    <b-card
+                      :sub-title="items.sub_title"
+                      :img-src="items.image_link"
+                      img-alt="Image"
+                      img-top
+                    >
+                      <i class="fa fa-play-circle"></i>
+                      <b-card-text> {{ items.title }} </b-card-text>
+                    </b-card>
+                  </nuxt-link>
+                </div>
+              </template>
+            </div>
+            <b-button variant="outline-dark" @click="moreInfo" class="moreInfo"
+              >查看更多</b-button
+            >
             <!-- 视频跳转区域 -->
-            <nuxt-link  :to="{name:'worksDetails-worksDetailOne'}">
-               <b-card
-               sub-title="xxx 拍摄"
-                img-src="~/assets/img/video/video1.png"
-                img-alt="Image"
-                img-top
-              >
-              <i class="fa fa-play-circle"></i>
-                <b-card-text>
-                    艺术涂鸦风宣传片
-                </b-card-text>
-              </b-card>
-            </nuxt-link>
           </div>
-           <div class="col-4 box_video bd1">
-              <b-card
-               sub-title="xxx 拍摄"
-                img-src="~/assets/img/video/video2.png"
-                img-alt="Image"
-                img-top
-              >
-              <i class="fa fa-play-circle"></i>
-                <b-card-text>
-                    复古艺术电影宣传片
-                </b-card-text>
-              </b-card>
-          </div>
-           <div class="col-4 box_video bd1">
-              <b-card
-               sub-title="xxx 拍摄"
-                img-src="~/assets/img/video/video3.png"
-                img-alt="Image"
-                img-top
-              >
-              <i class="fa fa-play-circle"></i>
-                <b-card-text>
-                    欧美型潮流宣传片
-                </b-card-text>
+        </template>
 
-              </b-card>
-          </div>
-
-        </div>
-
-      <!-- 视频跳转区域 -->
-
-
-      </div>
-      <!-- b-container（内容中部分）-----2 -->
-      <div id="container2">
-        <div
-          class="twomodule"
-          :style="{
-            background: 'url(' + obj.modules2.bimg + ') no-repeat center',
-          }"
-        >
-          <div class="content">
-            <h4>{{ obj.modules2.hfour }}</h4>
-            <p>{{ obj.modules2.pcontent }}</p>
-            <ul>
-              <li v-for="(v, k) in obj.modules2.lis" :key="k">{{ v }}</li>
-            </ul>
+        <!-- b-container（内容中部分）-----2 -->
+        <div id="container2">
+          <div
+            class="twomodule"
+            :style="{
+              background: 'url(' + obj.modules2.bimg + ') no-repeat center',
+            }"
+          >
+            <div class="content">
+              <h4>{{ obj.modules2.hfour }}</h4>
+              <p>{{ obj.modules2.pcontent }}</p>
+              <ul>
+                <li v-for="(v, k) in obj.modules2.lis" :key="k">{{ v }}</li>
+              </ul>
+            </div>
           </div>
         </div>
-      </div>
-      <!-- b-container（内容底部分）-----3 -->
-      <div id="container3">
-        <h2 class="titles">{{ obj.titles.title3 }}</h2>
-       <!-- 记录片视频内容 -->
-        <div class="row bd1">
-           <div class="col-4 dec_video bd1">
-            <!-- <img src="~/assets/img/video2.jpg" width="100%"> -->
-            <!--  -->
-               <b-card
-               sub-title="xxx 拍摄"
+        <!-- b-container（内容底部分）-----3 -->
+        <div id="container3">
+          <h2 class="titles">{{ obj.titles.title3 }}</h2>
+          <!-- 记录片视频内容 -->
+          <div class="row bd1">
+            <div class="col-4 dec_video bd1">
+              <!-- <img src="~/assets/img/video2.jpg" width="100%"> -->
+              <!--  -->
+              <b-card
+                sub-title="xxx 拍摄"
                 img-src="~/assets/img/video/videodct1.png"
                 img-alt="Image"
                 img-top
               >
-              <i class="fa fa-play-circle"></i>
-                <b-card-text>
-                    西西里旅行 记录片
-                </b-card-text>
+                <i class="fa fa-play-circle"></i>
+                <b-card-text> 西西里旅行 记录片 </b-card-text>
               </b-card>
-          </div>
-           <div class="col-4 dec_video bd1">
+            </div>
+            <div class="col-4 dec_video bd1">
               <b-card
-               sub-title="xxx 拍摄"
+                sub-title="xxx 拍摄"
                 img-src="~/assets/img/video/videodct2.png"
                 img-alt="Image"
                 img-top
               >
-              <i class="fa fa-play-circle"></i>
-                <b-card-text>
-                     日本旅游 记录片拍摄
-                </b-card-text>
+                <i class="fa fa-play-circle"></i>
+                <b-card-text> 日本旅游 记录片拍摄 </b-card-text>
               </b-card>
-          </div>
-           <div class="col-4 dec_video bd1">
+            </div>
+            <div class="col-4 dec_video bd1">
               <b-card
-               sub-title="xxx 拍摄"
+                sub-title="xxx 拍摄"
                 img-src="~/assets/img/video/wideoct3.png"
                 img-alt="Image"
                 img-top
               >
-              <i class="fa fa-play-circle"></i>
-                <b-card-text>
-                    荒野求生 记录电影
-                </b-card-text>
-
+                <i class="fa fa-play-circle"></i>
+                <b-card-text> 荒野求生 记录电影 </b-card-text>
               </b-card>
+            </div>
           </div>
+          <!-- 记录片视频内容结束 -->
         </div>
-       <!-- 记录片视频内容结束 -->
       </div>
-
-    </div>
     </main>
 
-    <Footer/>
+    <Footer />
   </section>
 </template>
 <script scoped>
-import Footer from "@/components/Footer"
+import Footer from "@/components/Footer";
 export default {
   name: "worksSese",
   data() {
@@ -161,7 +130,7 @@ export default {
           active: true,
         },
       ],
-      dataList:[],
+      dataList: [],
       obj: {
         //body三分支大标题
         titles: {
@@ -192,28 +161,29 @@ export default {
     };
   },
   components: {
-      Footer
+    Footer,
   },
   mounted() {
-    this.getData
+    this.getData();
   },
-  methods:{
-      getData(){
-        this.$axios.$get("/api/opus/").then(res=>{
-        console.log(res.data[0])
-        this.dataList = red.data
-      })
-     }
-  }
-
-
+  methods: {
+    getData() {
+      this.$axios.$get("/api/category/opus").then((res) => {
+        console.log(res.data);
+        this.dataList = res.data;
+      });
+    },
+    moreInfo() {
+      alert("敬请期待");
+    },
+  },
 };
 </script>
 <style scoped>
 /* 锚点 */
-/* .bd1{
-  border: 1px solid;
-} */
+.bd1 {
+  border: none;
+}
 header {
   display: flex;
   align-items: center;
@@ -235,15 +205,13 @@ header h1 {
   position: absolute;
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
-
 }
-header h1 p{
+header h1 p {
   text-align: center;
 }
-header h1 p sub{
+header h1 p sub {
   font-size: 1rem;
 }
-
 
 header::before {
   position: absolute;
@@ -268,9 +236,7 @@ main {
   background-color: white;
 }
 
-
-
-a{
+a {
   color: black;
   text-decoration: none;
 }
@@ -279,7 +245,6 @@ a{
   right: 30px;
   z-index: 999;
   position: fixed;
-
 }
 .titles {
   margin: 0 auto;
@@ -301,17 +266,19 @@ a{
 /* ------------------------ 视频跳转样式 ---------------------------------- */
 
 #container1 .titles,
-#container3 .titles{
- font-family: STKaiti;
+#container3 .titles {
+  font-family: STKaiti;
   font-weight: 600;
   color: #000;
   width: 100%;
 }
 
-#container1 .box_video,#container3 .dec_video{
+#container1 .box_video,
+#container3 .dec_video {
   position: relative;
 }
-#container1 .box_video i,#container3 .dec_video i{
+#container1 .box_video i,
+#container3 .dec_video i {
   content: " ";
   position: absolute;
   left: 150px;
@@ -320,8 +287,8 @@ a{
 }
 
 #container1 .box_video .fa-play-circle::before,
-#container3 .dec_video .fa-play-circle::before{
-  color: rgba(255, 255, 255, .4);
+#container3 .dec_video .fa-play-circle::before {
+  color: rgba(255, 255, 255, 0.4);
 }
 /* 第二个模块的title(前边是把title大概定个样式 这里是细节调整) */
 #container2 .title {
@@ -329,7 +296,7 @@ a{
   height: 20px;
 }
 /* 面包屑导航样式 */
-#modules .brean_crumb{
+#modules .brean_crumb {
   background-color: white;
   margin-top: 15px;
 }
@@ -367,11 +334,17 @@ a{
   transition: transform 400ms linear;
   z-index: 99;
 }
-
-
-
-
-
-
-
+.card-img,
+.card-img-top {
+  height: 211px;
+  width: 376px;
+}
+#container1 {
+  margin-top: 15px;
+}
+.moreInfo {
+  margin: 0 auto;
+  margin-top: 15px;
+  /* float: right; */
+}
 </style>
